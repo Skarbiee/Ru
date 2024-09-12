@@ -1,36 +1,68 @@
-.heart {
-  width: 100px;
-  height: 100px;
-  background-color: red;
-  position: relative;
-  transform: rotate(-45deg);
+:root{
+  --primary: #fff;
+  --bg-color: rgb(5, 53, 61);
+  --bg-envelope-color: #a00c0c;
+  --envelope-tab: #ecdeb8;
+  --envelope-cover: #e6cfa7;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --txt-color: #444;
+  --heart-color: rgb(252, 8, 231);
+
 }
-.heart::before,
-.heart::after {
-  content: "";
-  width: 100px;
-  height: 100px;
-  background-color: red;
-  border-radius: 50%;
-  position: absolute;
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.heart::before {
-  top: -50px;
-  left: 0;
-}
-.heart::after {
-  left: 50px;
-  top: 0;
+.container {
+  height: 100vh;
+  display: grid;
+  place-items: center;
 }
 
 @keyframes heartbeat {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
+   0%, 100% {
+     transform: scale(1);
+   }
+   50% {
+     transform: scale(1.1);
+   }
+ }
+
+.heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  background: var(--heart-color);
+  z-index: 4;
+  transform: translate(-50%, -20%) rotate(45deg);
+  transition: transform 0.5s ease-in-out 1s;
+  box-shadow: 0 1px 6px var(--shadow-color);
+  cursor: pointer;
 }
+
 .heart {
   animation: heartbeat 1s infinite;
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: var(--heart-color);
+  border-radius: 50%;
+}
+.heart:before {
+  top: -7.5px;
+}
+.heart:after {
+  right: 7.5px;
 }
